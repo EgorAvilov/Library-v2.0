@@ -3,7 +3,8 @@ package by.itechart.library.controller.command.impl;
 import by.itechart.library.controller.command.Command;
 import by.itechart.library.controller.command.exception.CommandException;
 import by.itechart.library.service.ServiceFactory;
-import by.itechart.library.service.api.UserService;
+import by.itechart.library.service.api.ReaderService;
+
 import by.itechart.library.service.exception.ServiceException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -19,10 +20,10 @@ public class GetBookByIdCommand implements Command {
         int id = Integer.parseInt(idNumber);
 
         ServiceFactory serviceFactory = ServiceFactory.getINSTANCE();
-        UserService userServiceImpl = serviceFactory.getUserServiceImpl();
+        ReaderService readerServiceImpl = serviceFactory.getReaderServiceImpl();
 
         try {
-            userServiceImpl.viewBookById(id);
+            readerServiceImpl.viewBookById(id);
         } catch (ServiceException e) {
             throw new CommandException("", e);
         }

@@ -21,4 +21,9 @@ public class BorrowRecordDAOImpl implements BorrowRecordDAO {
     public List<BorrowRecord> getAllByReaderId(int readerId) throws DAOException {
         return null;
     }
+
+    @Override
+    public void updateBorrowRecord(BorrowRecord borrowRecord) throws DAOException {
+
+    }
 }

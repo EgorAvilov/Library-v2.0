@@ -21,5 +21,7 @@ public class Book implements Serializable {
     private int totalAmount;
     private boolean status;//пока пусть будет так сделать enum
 
+    private boolean deletedStatus;
+
     private int availableAmount;
 }

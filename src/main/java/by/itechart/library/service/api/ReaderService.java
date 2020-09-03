@@ -7,7 +7,7 @@ import by.itechart.library.service.exception.ServiceException;
 
 import java.util.List;
 
-public interface UserService {
+public interface ReaderService {
     public Book viewBookById(int id) throws ServiceException;
     public List<Book> viewAllBooks() throws ServiceException;
 
@@ -18,5 +18,6 @@ public interface UserService {
 
    public void addBorrowRecord(BorrowRecord borrowRecord) throws ServiceException;
 
+   public Reader viewProfile(int readerId) throws ServiceException;
 
 }
