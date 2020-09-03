@@ -15,7 +15,7 @@ public final class SQLRequest {
 
 
     public static final String GET_BORROW_RECORDS_BY_READER_ID = "SELECT * FROM borrow_records WHERE reader_id = ?"; //написать сам запрос
-
+    public static final String GET_ALL_BORROW_RECORDS="SELECT * FROM borrow_records";
 
     public static final String GET_READER_BY_ID = "SELECT * FROM readers WHERE id=?";
 
