@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class GetBookByIdCommand implements Command {
 
     @Override
