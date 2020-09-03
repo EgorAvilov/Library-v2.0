@@ -38,7 +38,6 @@ public class BookDAOImpl implements BookDAO {
             connection = DBCPDataSource.getConnection();
             statement = connection.prepareStatement(request);
             resultSet = statement.executeQuery();
-
             while (resultSet.next()) {
                 Book book = resultCreator.getNextBook(resultSet);
                 books.add(book);
@@ -61,6 +60,7 @@ public class BookDAOImpl implements BookDAO {
         try {
             connection = DBCPDataSource.getConnection();
             statement = connection.prepareStatement(request);
+            statementInitializer.addBook(statement, book);
             statement.executeQuery();
         } catch (SQLException ex) {
             throw new DAOException(ex);
@@ -73,17 +73,14 @@ public class BookDAOImpl implements BookDAO {
     @Override
     public Book getBook(int id) throws DAOException {
         String request = SQLRequest.GET_BOOK_BY_ID;
-
         Book book = null;
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-
         try {
             connection = DBCPDataSource.getConnection();
             statement = connection.prepareStatement(request);
-
-            statementInitializer.initBookId(statement, id);
+            statementInitializer.addBookId(statement, id);
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 book = resultCreator.getNextBook(resultSet);
@@ -100,8 +97,20 @@ public class BookDAOImpl implements BookDAO {
 
     @Override
     public void updateBook(Book book) throws DAOException {
-
-
+        String request = SQLRequest.UPDATE_BOOK;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = DBCPDataSource.getConnection();
+            statement = connection.prepareStatement(request);
+            statementInitializer.updateBook(statement, book);
+            statement.executeQuery();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            resourceCloser.close(statement);
+            resourceCloser.close(connection);
+        }
 
 
     }
