@@ -29,14 +29,11 @@ public class BookDAOImpl implements BookDAO {
 
     @Override
     public List<Book> getAllBook() throws DAOException {
-
         String request = SQLRequest.GET_ALL_BOOKS;
-
         List<Book> books = new ArrayList<>();
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-
         try {
             connection = DBCPDataSource.getConnection();
             statement = connection.prepareStatement(request);
@@ -103,6 +100,9 @@ public class BookDAOImpl implements BookDAO {
 
     @Override
     public void updateBook(Book book) throws DAOException {
+
+
+
 
     }
 

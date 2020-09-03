@@ -8,7 +8,6 @@ import by.itechart.library.dao.api.BookDAO;
 import by.itechart.library.dao.api.BorrowRecordDAO;
 import by.itechart.library.dao.api.ReaderDAO;
 import by.itechart.library.dao.exception.DAOException;
-
 import by.itechart.library.service.api.ReaderService;
 import by.itechart.library.service.exception.ServiceException;
 
@@ -17,18 +16,18 @@ import java.util.List;
 
 public class ReaderServiceImpl implements ReaderService {
 
-    private DAOFactory daoFactory=DAOFactory.getINSTANCE();
+    private DAOFactory daoFactory = DAOFactory.getINSTANCE();
 
-    private BookDAO bookDAO=daoFactory.getBookDAO();
-    private BorrowRecordDAO borrowRecordDAO= daoFactory.getBorrowRecordDAO();
-    private ReaderDAO readerDAO= daoFactory.getReaderDAO();
+    private BookDAO bookDAO = daoFactory.getBookDAO();
+    private BorrowRecordDAO borrowRecordDAO = daoFactory.getBorrowRecordDAO();
+    private ReaderDAO readerDAO = daoFactory.getReaderDAO();
 
 
     @Override
     public Book viewBookById(int id) throws ServiceException {
-      Book book=new Book();
+        Book book = new Book();
         try {
-            book=bookDAO.getBook(id);
+            book = bookDAO.getBook(id);
         } catch (DAOException e) {
             new ServiceException(e);
         }
@@ -37,9 +36,9 @@ public class ReaderServiceImpl implements ReaderService {
 
     @Override
     public List<Book> viewAllBooks() throws ServiceException {
-       List<Book> books=new ArrayList<>();
+        List<Book> books = new ArrayList<>();
         try {
-            books=bookDAO.getAllBook();
+            books = bookDAO.getAllBook();
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -48,11 +47,23 @@ public class ReaderServiceImpl implements ReaderService {
 
     @Override
     public Reader signIn(String username, String password) throws ServiceException {
-        return null;
+        Reader reader=new Reader();
+        try {
+            reader=readerDAO.getReader(username, password);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+        return reader;
     }
 
     @Override
     public void signUp(Reader reader) throws ServiceException {
+
+        try {
+            readerDAO.addReader(reader);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
 
     }
 
@@ -67,15 +78,13 @@ public class ReaderServiceImpl implements ReaderService {
 
     @Override
     public Reader viewProfile(int readerId) throws ServiceException {
-       Reader reader=new Reader();
+        Reader reader = new Reader();
 
         try {
-            reader=readerDAO.getReader(readerId);
+            reader = readerDAO.getReader(readerId);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
         return reader;
     }
-
-
 }

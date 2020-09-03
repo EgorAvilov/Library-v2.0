@@ -31,4 +31,9 @@ public class ReaderDAOImpl implements ReaderDAO {
     public int changeDeletedStatus(int readerId) throws DAOException {
         return 0;
     }
+
+    @Override
+    public Reader getReader(String username, String password) throws DAOException {
+        return null;
+    }
 }

@@ -17,4 +17,5 @@ public interface ReaderDAO {
     public List<Reader> getAllReaders() throws DAOException;
 
     public int changeDeletedStatus(int readerId) throws DAOException;
+    public Reader getReader(String username, String password) throws DAOException;
 }
