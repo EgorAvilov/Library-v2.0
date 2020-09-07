@@ -3,11 +3,9 @@ package by.itechart.library.controller.command.impl;
 import by.itechart.library.controller.command.Command;
 import by.itechart.library.controller.command.exception.CommandException;
 import by.itechart.library.service.ServiceFactory;
-import by.itechart.library.service.api.ReaderService;
+import by.itechart.library.service.api.UserService;
 
 import by.itechart.library.service.exception.ServiceException;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +18,7 @@ public class GetBookByIdCommand implements Command {
         int id = Integer.parseInt(idNumber);
 
         ServiceFactory serviceFactory = ServiceFactory.getINSTANCE();
-        ReaderService readerServiceImpl = serviceFactory.getReaderServiceImpl();
+        UserService readerServiceImpl = serviceFactory.getUserServiceImpl();
 
         try {
             readerServiceImpl.viewBookById(id);

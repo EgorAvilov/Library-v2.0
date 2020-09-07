@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.sql.Date;
 
 @Data
-public class Reader implements Serializable {
+public class User implements Serializable {
     private static final long serialVersionUID = 4752563413543184299L;
 
     private int id;

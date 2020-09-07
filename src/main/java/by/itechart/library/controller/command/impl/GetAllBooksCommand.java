@@ -3,7 +3,7 @@ package by.itechart.library.controller.command.impl;
 import by.itechart.library.controller.command.Command;
 import by.itechart.library.controller.command.exception.CommandException;
 import by.itechart.library.service.ServiceFactory;
-import by.itechart.library.service.api.ReaderService;
+import by.itechart.library.service.api.UserService;
 
 import by.itechart.library.service.exception.ServiceException;
 
@@ -14,7 +14,7 @@ public class GetAllBooksCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         ServiceFactory serviceFactory = ServiceFactory.getINSTANCE();
-        ReaderService readerServiceImpl = serviceFactory.getReaderServiceImpl();
+        UserService readerServiceImpl = serviceFactory.getUserServiceImpl();
 
 
         try {

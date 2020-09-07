@@ -2,7 +2,7 @@ package by.itechart.library.dao.util.impl;
 
 import by.itechart.library.bean.Book;
 import by.itechart.library.bean.BorrowRecord;
-import by.itechart.library.bean.Reader;
+import by.itechart.library.bean.User;
 import by.itechart.library.dao.util.api.StatementInitializer;
 
 import java.sql.PreparedStatement;
@@ -72,21 +72,20 @@ public class StatementInitializerImpl implements StatementInitializer {
     }
 
     @Override
-    public void addReaderId(PreparedStatement statement, int id) throws SQLException {
+    public void addUserId(PreparedStatement statement, int id) throws SQLException {
         statement.setInt(1, id);
     }
 
     @Override
     public void updateBorrowRecord(PreparedStatement statement, BorrowRecord borrowRecord) throws SQLException {
         statement.setDate(1, borrowRecord.getReturnDate());
-        statement.setNString(2, borrowRecord.getBorrowRecordStatus()
-                                            .toString());
+        statement.setNString(2, borrowRecord.getBorrowRecordStatus().toString());
         statement.setNString(3, borrowRecord.getComment());
         statement.setInt(4, borrowRecord.getId());
     }
 
     @Override
-    public void addReader(PreparedStatement statement, Reader reader) throws SQLException {
+    public void addUser(PreparedStatement statement, User reader) throws SQLException {
         statement.setNString(1, reader.getFirstName());
         statement.setNString(2, reader.getEmail());
         statement.setDate(3, reader.getDateOfRegistration());
@@ -98,7 +97,7 @@ public class StatementInitializerImpl implements StatementInitializer {
     }
 
     @Override
-    public void updateReader(PreparedStatement statement, Reader reader) throws SQLException {
+    public void updateUser(PreparedStatement statement, User reader) throws SQLException {
         statement.setNString(1, reader.getFirstName());
         statement.setNString(2, reader.getEmail());
         statement.setNString(3, reader.getPhoneNumber());

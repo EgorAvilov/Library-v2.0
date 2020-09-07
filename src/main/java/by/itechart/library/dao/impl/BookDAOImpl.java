@@ -117,7 +117,7 @@ public class BookDAOImpl implements BookDAO {
     @Override
     public int changeDeletedStatus(int bookId) throws DAOException {
         String request = SQLRequest.CHANGE_BOOK_DELETED_STATUS;
-        Connection connection = null;
+        Connection connection;
         PreparedStatement statement = null;
         int result = 0;
         try {

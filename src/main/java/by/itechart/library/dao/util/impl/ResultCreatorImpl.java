@@ -2,7 +2,7 @@ package by.itechart.library.dao.util.impl;
 
 import by.itechart.library.bean.Book;
 import by.itechart.library.bean.BorrowRecord;
-import by.itechart.library.bean.Reader;
+import by.itechart.library.bean.User;
 import by.itechart.library.dao.util.api.ResultCreator;
 
 import java.sql.ResultSet;
@@ -20,7 +20,7 @@ public class ResultCreatorImpl implements ResultCreator {
     }
 
     @Override
-    public Reader getNextReader(ResultSet resultSet) throws SQLException {
+    public User getNextUser(ResultSet resultSet) throws SQLException {
         return null;
     }
 }

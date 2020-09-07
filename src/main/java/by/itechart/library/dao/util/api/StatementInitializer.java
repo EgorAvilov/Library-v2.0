@@ -2,7 +2,7 @@ package by.itechart.library.dao.util.api;
 
 import by.itechart.library.bean.Book;
 import by.itechart.library.bean.BorrowRecord;
-import by.itechart.library.bean.Reader;
+import by.itechart.library.bean.User;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -18,14 +18,14 @@ public interface StatementInitializer {
 
     public void addBorrowRecord(PreparedStatement statement, BorrowRecord borrowRecord) throws SQLException;
 
-    public void addReaderId(PreparedStatement statement, int id) throws SQLException;
+    public void addUserId(PreparedStatement statement, int id) throws SQLException;
 
 
     public void updateBorrowRecord(PreparedStatement statement, BorrowRecord borrowRecord) throws SQLException;
 
-    public void addReader(PreparedStatement statement, Reader reader) throws SQLException;
+    public void addUser(PreparedStatement statement, User user) throws SQLException;
 
-    public void updateReader(PreparedStatement statement, Reader reader) throws SQLException;
+    public void updateUser(PreparedStatement statement, User user) throws SQLException;
 
     public void addCredentials(PreparedStatement statement, String username, String password) throws SQLException;
 }

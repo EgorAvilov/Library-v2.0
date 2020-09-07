@@ -2,10 +2,10 @@ package by.itechart.library.dao;
 
 import by.itechart.library.dao.api.BookDAO;
 import by.itechart.library.dao.api.BorrowRecordDAO;
-import by.itechart.library.dao.api.ReaderDAO;
+import by.itechart.library.dao.api.UserDAO;
 import by.itechart.library.dao.impl.BookDAOImpl;
 import by.itechart.library.dao.impl.BorrowRecordDAOImpl;
-import by.itechart.library.dao.impl.ReaderDAOImpl;
+import by.itechart.library.dao.impl.UserDAOImpl;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +18,7 @@ public class DAOFactory {
     @Getter
     private BookDAO bookDAO = new BookDAOImpl();
     @Getter
-    private ReaderDAO readerDAO = new ReaderDAOImpl();
+    private UserDAO userDAO = new UserDAOImpl();
     @Getter
     private BorrowRecordDAO borrowRecordDAO = new BorrowRecordDAOImpl();
 

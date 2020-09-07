@@ -24,11 +24,11 @@ public final class SQLRequest {
     /**
      * запросы для таблицы Users
      */
-    public static final String GET_READER_BY_ID = "SELECT * FROM readers WHERE id=?";
-    public static final String CREATE_READER = "INSERT INTO readers (first_name, email, date_of_registration, phone_number, last_name,gender_id, username, password ) values(?,?,?,?,?,?,?,?)";//дописать
-    public static final String UPDATE_READER = "UPDATE readers SET first_name=?, email=?, phone_number=?, last_name=?, gender_id=?, password=? WHERE id=?";//ДОПИСАТЬ
-    public static final String GET_ALL_READERS = "SELECT * FROM readers";
-    public static final String CHANGE_READER_DELETED_STATUS = "UPDATE readers SET deleted_status=? WHERE id=?";
-    public static final String GET_READER_BY_CREDENTIALS = "SELECT * FROM readers WHERE username=? AND password=?";
+    public static final String GET_USER_BY_ID = "SELECT * FROM users WHERE id=?";
+    public static final String CREATE_USER = "INSERT INTO users (first_name, email, date_of_registration, phone_number, last_name,gender_id, username, password ) values(?,?,?,?,?,?,?,?)";//дописать
+    public static final String UPDATE_USER = "UPDATE users SET first_name=?, email=?, phone_number=?, last_name=?, gender_id=?, password=? WHERE id=?";//ДОПИСАТЬ
+    public static final String GET_ALL_USERS = "SELECT * FROM users";
+    public static final String CHANGE_USER_DELETED_STATUS = "UPDATE users SET deleted_status=? WHERE id=?";
+    public static final String GET_USER_BY_CREDENTIALS = "SELECT * FROM users WHERE username=? AND password=?";
 
 }

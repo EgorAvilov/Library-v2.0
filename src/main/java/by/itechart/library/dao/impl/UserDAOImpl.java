@@ -1,9 +1,8 @@
 package by.itechart.library.dao.impl;
 
-import by.itechart.library.bean.Book;
-import by.itechart.library.bean.Reader;
+import by.itechart.library.bean.User;
 import by.itechart.library.dao.SQLRequest;
-import by.itechart.library.dao.api.ReaderDAO;
+import by.itechart.library.dao.api.UserDAO;
 import by.itechart.library.dao.exception.DAOException;
 import by.itechart.library.dao.pool.DBCPDataSource;
 import by.itechart.library.dao.util.DAOUtilFactory;
@@ -18,21 +17,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReaderDAOImpl implements ReaderDAO {
+public class UserDAOImpl implements UserDAO {
     private DAOUtilFactory utilFactory = DAOUtilFactory.getINSTANCE();
     private ResultCreator resultCreator = utilFactory.getResultCreator();
     private ResourceCloser resourceCloser = utilFactory.getResourceCloser();
     private StatementInitializer statementInitializer = utilFactory.getStatementInitializer();
 
     @Override
-    public void addReader(Reader reader) throws DAOException {
-        String request = SQLRequest.CREATE_READER;
+    public void addUser(User user) throws DAOException {
+        String request = SQLRequest.CREATE_USER;
         Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = DBCPDataSource.getConnection();
             statement = connection.prepareStatement(request);
-            statementInitializer.addReader(statement, reader);
+            statementInitializer.addUser(statement, user);
             statement.executeQuery();
         } catch (SQLException ex) {
             throw new DAOException(ex);
@@ -42,19 +41,19 @@ public class ReaderDAOImpl implements ReaderDAO {
     }
 
     @Override
-    public Reader getReader(int id) throws DAOException {
-        String request = SQLRequest.GET_READER_BY_ID;
-        Reader reader = null;
+    public User getUser(int id) throws DAOException {
+        String request = SQLRequest.GET_USER_BY_ID;
+        User user = null;
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
             connection = DBCPDataSource.getConnection();
             statement = connection.prepareStatement(request);
-            statementInitializer.addReaderId(statement, id);
+            statementInitializer.addUserId(statement, id);
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                reader = resultCreator.getNextReader(resultSet);
+                user = resultCreator.getNextUser(resultSet);
             }
         } catch (SQLException ex) {
             throw new DAOException(ex);
@@ -63,18 +62,18 @@ public class ReaderDAOImpl implements ReaderDAO {
             resourceCloser.close(statement);
 
         }
-        return reader;
+        return user;
     }
 
     @Override
-    public void updateReader(Reader reader) throws DAOException {
-        String request = SQLRequest.UPDATE_READER;
+    public void updateUser(User user) throws DAOException {
+        String request = SQLRequest.UPDATE_USER;
         Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = DBCPDataSource.getConnection();
             statement = connection.prepareStatement(request);
-            statementInitializer.updateReader(statement, reader);
+            statementInitializer.updateUser(statement, user);
             statement.executeQuery();
         } catch (SQLException e) {
             throw new DAOException(e);
@@ -87,9 +86,9 @@ public class ReaderDAOImpl implements ReaderDAO {
     }
 
     @Override
-    public List<Reader> getAllReaders() throws DAOException {
-        String request = SQLRequest.GET_ALL_READERS;
-        List<Reader> readers = new ArrayList<>();
+    public List<User> getAllUsers() throws DAOException {
+        String request = SQLRequest.GET_ALL_USERS;
+        List<User> users = new ArrayList<>();
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -98,8 +97,8 @@ public class ReaderDAOImpl implements ReaderDAO {
             statement = connection.prepareStatement(request);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                Reader reader = resultCreator.getNextReader(resultSet);
-                readers.add(reader);
+                User user = resultCreator.getNextUser(resultSet);
+                users.add(user);
             }
         } catch (SQLException ex) {
             throw new DAOException(ex);
@@ -108,20 +107,20 @@ public class ReaderDAOImpl implements ReaderDAO {
             resourceCloser.close(statement);
 
         }
-        return readers;
+        return users;
     }
 
     @Override
-    public int changeDeletedStatus(int readerId) throws DAOException {
-        String request = SQLRequest.CHANGE_READER_DELETED_STATUS;
+    public int changeDeletedStatus(int userId) throws DAOException {
+        String request = SQLRequest.CHANGE_USER_DELETED_STATUS;
         Connection connection = null;
         PreparedStatement statement = null;
         int result = 0;
         try {
             connection = DBCPDataSource.getConnection();
             statement = connection.prepareStatement(request);
-            Reader reader = getReader(readerId);
-            statementInitializer.changeDeletedStatus(statement, !reader.isDeletedStatus(), readerId);
+            User user = getUser(userId);
+            statementInitializer.changeDeletedStatus(statement, !user.isDeletedStatus(), userId);
             result = statement.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException(e);
@@ -132,9 +131,9 @@ public class ReaderDAOImpl implements ReaderDAO {
     }
 
     @Override
-    public Reader getReader(String username, String password) throws DAOException {
-        String request = SQLRequest.GET_READER_BY_CREDENTIALS;
-        Reader reader = null;
+    public User getUser(String username, String password) throws DAOException {
+        String request = SQLRequest.GET_USER_BY_CREDENTIALS;
+        User user = null;
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -144,7 +143,7 @@ public class ReaderDAOImpl implements ReaderDAO {
             statementInitializer.addCredentials(statement, username, password);
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                reader = resultCreator.getNextReader(resultSet);
+                user = resultCreator.getNextUser(resultSet);
             }
         } catch (SQLException ex) {
             throw new DAOException(ex);
@@ -153,6 +152,6 @@ public class ReaderDAOImpl implements ReaderDAO {
             resourceCloser.close(statement);
 
         }
-        return reader;
+        return user;
     }
 }
