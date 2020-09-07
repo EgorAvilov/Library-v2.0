@@ -1,6 +1,8 @@
 package by.itechart.library.dao.util.impl;
 
 import by.itechart.library.bean.Book;
+import by.itechart.library.bean.BorrowRecord;
+import by.itechart.library.bean.Reader;
 import by.itechart.library.dao.util.api.StatementInitializer;
 
 import java.sql.PreparedStatement;
@@ -13,7 +15,7 @@ public class StatementInitializerImpl implements StatementInitializer {
     }
 
     @Override
-    public void addBook(PreparedStatement statement, Book book) {
+    public void addBook(PreparedStatement statement, Book book) throws SQLException {
         try {
             statement.setBytes(1, book.getCover());
             statement.setNString(2, book.getTitle());
@@ -33,7 +35,7 @@ public class StatementInitializerImpl implements StatementInitializer {
 
 
     @Override
-    public void updateBook(PreparedStatement statement, Book book) {
+    public void updateBook(PreparedStatement statement, Book book) throws SQLException {
         try {
             statement.setBytes(1, book.getCover());
             statement.setNString(2, book.getTitle());
@@ -52,5 +54,63 @@ public class StatementInitializerImpl implements StatementInitializer {
         }
 
 
+    }
+
+    @Override
+    public void changeDeletedStatus(PreparedStatement statement, boolean deletedStatus, int booksId) throws SQLException {
+        statement.setBoolean(1, deletedStatus);
+        statement.setInt(2, booksId);
+
+    }
+
+    @Override
+    public void addBorrowRecord(PreparedStatement statement, BorrowRecord borrowRecord) throws SQLException {
+        statement.setInt(1, borrowRecord.getReaderId());
+        statement.setDate(2, borrowRecord.getBorrowDate());
+        statement.setDate(3, borrowRecord.getDueDate());
+        statement.setInt(4, borrowRecord.getReaderId());
+    }
+
+    @Override
+    public void addReaderId(PreparedStatement statement, int id) throws SQLException {
+        statement.setInt(1, id);
+    }
+
+    @Override
+    public void updateBorrowRecord(PreparedStatement statement, BorrowRecord borrowRecord) throws SQLException {
+        statement.setDate(1, borrowRecord.getReturnDate());
+        statement.setNString(2, borrowRecord.getBorrowRecordStatus()
+                                            .toString());
+        statement.setNString(3, borrowRecord.getComment());
+        statement.setInt(4, borrowRecord.getId());
+    }
+
+    @Override
+    public void addReader(PreparedStatement statement, Reader reader) throws SQLException {
+        statement.setNString(1, reader.getFirstName());
+        statement.setNString(2, reader.getEmail());
+        statement.setDate(3, reader.getDateOfRegistration());
+        statement.setNString(4, reader.getPhoneNumber());
+        statement.setInt(5, reader.getGenderId());
+        statement.setNString(6, reader.getUsername());
+        statement.setNString(7, reader.getPassword());
+
+    }
+
+    @Override
+    public void updateReader(PreparedStatement statement, Reader reader) throws SQLException {
+        statement.setNString(1, reader.getFirstName());
+        statement.setNString(2, reader.getEmail());
+        statement.setNString(3, reader.getPhoneNumber());
+        statement.setNString(4, reader.getLastName());
+        statement.setInt(5, reader.getGenderId());
+        statement.setNString(6, reader.getPassword());
+        statement.setInt(7, reader.getId());
+    }
+
+    @Override
+    public void addCredentials(PreparedStatement statement, String username, String password) throws SQLException {
+        statement.setNString(1,username);
+        statement.setNString(2,password);
     }
 }

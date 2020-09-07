@@ -28,7 +28,7 @@ public class BookDAOImpl implements BookDAO {
      */
 
     @Override
-    public List<Book> getAllBook() throws DAOException {
+    public List<Book> getAllBooks() throws DAOException {
         String request = SQLRequest.GET_ALL_BOOKS;
         List<Book> books = new ArrayList<>();
         Connection connection = null;
@@ -47,7 +47,7 @@ public class BookDAOImpl implements BookDAO {
         } finally {
             resourceCloser.close(resultSet);
             resourceCloser.close(statement);
-            resourceCloser.close(connection);
+
         }
         return books;
     }
@@ -66,7 +66,6 @@ public class BookDAOImpl implements BookDAO {
             throw new DAOException(ex);
         } finally {
             resourceCloser.close(statement);
-            resourceCloser.close(connection);
         }
     }
 
@@ -90,7 +89,7 @@ public class BookDAOImpl implements BookDAO {
         } finally {
             resourceCloser.close(resultSet);
             resourceCloser.close(statement);
-            resourceCloser.close(connection);
+
         }
         return book;
     }
@@ -109,7 +108,7 @@ public class BookDAOImpl implements BookDAO {
             throw new DAOException(e);
         } finally {
             resourceCloser.close(statement);
-            resourceCloser.close(connection);
+
         }
 
 
@@ -117,6 +116,21 @@ public class BookDAOImpl implements BookDAO {
 
     @Override
     public int changeDeletedStatus(int bookId) throws DAOException {
-        return 0;
+        String request = SQLRequest.CHANGE_BOOK_DELETED_STATUS;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        int result = 0;
+        try {
+            connection = DBCPDataSource.getConnection();
+            statement = connection.prepareStatement(request);
+            Book book = getBook(bookId);
+            statementInitializer.changeDeletedStatus(statement, !book.isDeletedStatus(), bookId);
+            result = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            resourceCloser.close(statement);
+        }
+        return result;
     }
 }

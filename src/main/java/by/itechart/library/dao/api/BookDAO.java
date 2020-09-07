@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface BookDAO {
 
-    public List<Book> getAllBook() throws DAOException;
+    public List<Book> getAllBooks() throws DAOException;
 
     public void addBook(Book book) throws DAOException;
 

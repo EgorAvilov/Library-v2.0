@@ -38,7 +38,7 @@ public class ReaderServiceImpl implements ReaderService {
     public List<Book> viewAllBooks() throws ServiceException {
         List<Book> books = new ArrayList<>();
         try {
-            books = bookDAO.getAllBook();
+            books = bookDAO.getAllBooks();
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
