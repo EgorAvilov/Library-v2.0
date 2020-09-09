@@ -1,6 +1,6 @@
 package by.itechart.library.dao.api;
 
-import by.itechart.library.bean.BorrowRecord;
+import by.itechart.library.entity.BorrowRecord;
 import by.itechart.library.dao.exception.DAOException;
 
 import java.util.List;

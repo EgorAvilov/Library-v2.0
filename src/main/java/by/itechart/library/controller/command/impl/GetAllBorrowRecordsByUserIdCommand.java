@@ -1,6 +1,6 @@
 package by.itechart.library.controller.command.impl;
 
-import by.itechart.library.bean.BorrowRecord;
+import by.itechart.library.entity.BorrowRecord;
 import by.itechart.library.controller.command.Command;
 import by.itechart.library.controller.command.exception.CommandException;
 import by.itechart.library.controller.util.ControllerUtilFactory;
@@ -10,7 +10,6 @@ import by.itechart.library.controller.util.api.HttpRequestResponseKeeper;
 import by.itechart.library.controller.util.api.PaginationCurrentPage;
 import by.itechart.library.controller.util.api.PathCreator;
 import by.itechart.library.service.ServiceFactory;
-import by.itechart.library.service.api.AdminService;
 import by.itechart.library.service.api.UserService;
 import by.itechart.library.service.exception.ServiceException;
 

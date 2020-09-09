@@ -1,4 +1,4 @@
-package by.itechart.library.bean;
+package by.itechart.library.entity;
 
 public enum BookStatus {
     UNAVAILABLE(1),

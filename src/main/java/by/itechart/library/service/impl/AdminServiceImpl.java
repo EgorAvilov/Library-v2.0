@@ -1,8 +1,8 @@
 package by.itechart.library.service.impl;
 
-import by.itechart.library.bean.Book;
-import by.itechart.library.bean.BorrowRecord;
-import by.itechart.library.bean.User;
+import by.itechart.library.entity.Book;
+import by.itechart.library.entity.BorrowRecord;
+import by.itechart.library.entity.User;
 import by.itechart.library.dao.DAOFactory;
 import by.itechart.library.dao.api.BookDAO;
 import by.itechart.library.dao.api.BorrowRecordDAO;

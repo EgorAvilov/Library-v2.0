@@ -1,6 +1,6 @@
 package by.itechart.library.dao.impl;
 
-import by.itechart.library.bean.Book;
+import by.itechart.library.entity.Book;
 import by.itechart.library.dao.SQLRequest;
 import by.itechart.library.dao.api.BookDAO;
 import by.itechart.library.dao.exception.DAOException;

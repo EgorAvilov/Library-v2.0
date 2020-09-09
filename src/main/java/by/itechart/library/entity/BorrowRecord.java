@@ -1,4 +1,4 @@
-package by.itechart.library.bean;
+package by.itechart.library.entity;
 
 import lombok.Data;
 

@@ -1,6 +1,6 @@
 package by.itechart.library.controller.command.impl;
 
-import by.itechart.library.bean.User;
+import by.itechart.library.entity.User;
 import by.itechart.library.controller.command.Command;
 import by.itechart.library.controller.command.exception.CommandException;
 import by.itechart.library.controller.util.ControllerUtilFactory;

@@ -1,6 +1,6 @@
 package by.itechart.library.controller.command.impl;
 
-import by.itechart.library.bean.Book;
+import by.itechart.library.entity.Book;
 import by.itechart.library.controller.command.Command;
 import by.itechart.library.controller.command.exception.CommandException;
 import by.itechart.library.controller.util.ControllerUtilFactory;
@@ -15,7 +15,6 @@ import by.itechart.library.service.exception.ServiceException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 public class GetAllBooksCommand implements Command {

@@ -1,8 +1,8 @@
 package by.itechart.library.controller.util.api;
 
-import by.itechart.library.bean.Book;
-import by.itechart.library.bean.BorrowRecord;
-import by.itechart.library.bean.User;
+import by.itechart.library.entity.Book;
+import by.itechart.library.entity.BorrowRecord;
+import by.itechart.library.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

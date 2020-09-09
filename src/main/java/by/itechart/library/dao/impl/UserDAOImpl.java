@@ -1,6 +1,6 @@
 package by.itechart.library.dao.impl;
 
-import by.itechart.library.bean.User;
+import by.itechart.library.entity.User;
 import by.itechart.library.dao.SQLRequest;
 import by.itechart.library.dao.api.UserDAO;
 import by.itechart.library.dao.exception.DAOException;
