@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class DAOUtilFactory {
 
     @Getter
-    private static final DAOUtilFactory INSTANCE = new DAOUtilFactory();
+    private static final DAOUtilFactory Instance = new DAOUtilFactory();
     @Getter
     private ResultCreator resultCreator = new ResultCreatorImpl();
     @Getter

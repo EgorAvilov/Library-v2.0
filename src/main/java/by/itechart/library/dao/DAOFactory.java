@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class DAOFactory {
 
     @Getter
-    private static final DAOFactory INSTANCE = new DAOFactory();
+    private static final DAOFactory Instance = new DAOFactory();
     @Getter
     private BookDAO bookDAO = new BookDAOImpl();
     @Getter

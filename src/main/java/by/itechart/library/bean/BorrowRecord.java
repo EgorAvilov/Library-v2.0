@@ -15,4 +15,7 @@ public class BorrowRecord implements Serializable {
     private Date returnDate;
     private BorrowRecordStatus borrowRecordStatus;
     private String comment;
+    private int bookId;
+
+
 }

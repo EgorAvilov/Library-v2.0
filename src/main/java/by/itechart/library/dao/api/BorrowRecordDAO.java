@@ -1,6 +1,5 @@
 package by.itechart.library.dao.api;
 
-import by.itechart.library.bean.Book;
 import by.itechart.library.bean.BorrowRecord;
 import by.itechart.library.dao.exception.DAOException;
 
@@ -12,7 +11,13 @@ public interface BorrowRecordDAO {
 
     public void addBorrowRecord(BorrowRecord borrowRecord) throws DAOException;
 
-    public List<BorrowRecord> getAllByReaderId(int readerId) throws DAOException;
+    public List<BorrowRecord> getAllByUserId(int readerId) throws DAOException;
 
     public void updateBorrowRecord(BorrowRecord borrowRecord) throws DAOException;
+
+
+
+
+
+
 }

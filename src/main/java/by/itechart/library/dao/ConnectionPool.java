@@ -5,15 +5,15 @@ import java.sql.DriverManager;
 
 public class ConnectionPool {
 
-    private static ConnectionPool INSTANCE = null;
+    private static ConnectionPool Instance = null;
 
     private ConnectionPool() {
     }
 
-    public static ConnectionPool getINSTANCE() {
-        if (INSTANCE == null)
-            INSTANCE = new ConnectionPool();
-        return INSTANCE;
+    public static ConnectionPool getInstance() {
+        if (Instance == null)
+            Instance = new ConnectionPool();
+        return Instance;
     }
 
     public Connection getConnection() {

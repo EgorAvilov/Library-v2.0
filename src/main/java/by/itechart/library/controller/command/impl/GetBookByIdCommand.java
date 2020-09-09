@@ -12,24 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 public class GetBookByIdCommand implements Command {
 
+
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-        String idNumber = request.getParameter("id-book");
-        int id = Integer.parseInt(idNumber);
-
-        ServiceFactory serviceFactory = ServiceFactory.getINSTANCE();
-        UserService readerServiceImpl = serviceFactory.getUserServiceImpl();
-
-        try {
-            readerServiceImpl.viewBookById(id);
-        } catch (ServiceException e) {
-            throw new CommandException("", e);
-        }
-        return null;
-    }
-
- /*   @Override
     public String execute() throws CommandException {
         return null;
-    }*/
+    }
 }

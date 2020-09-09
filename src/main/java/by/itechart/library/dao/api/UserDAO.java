@@ -12,10 +12,11 @@ public interface UserDAO {
 
     public User getUser(int id) throws DAOException;
 
-    public void updateUser(User user)throws DAOException;
+    public void updateUser(User user) throws DAOException;
 
     public List<User> getAllUsers() throws DAOException;
 
     public int changeDeletedStatus(int userId) throws DAOException;
+
     public User getUser(String username, String password) throws DAOException;
 }

@@ -20,11 +20,21 @@ public class MainController extends HttpServlet {
     private static final long serialVersionUID = 1766930456155516074L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ControllerUtilFactory utilFactory = ControllerUtilFactory.getInstance();
+        PathCreator pathCreator = utilFactory.getPathCreator();
 
+        String action = request.getParameter(ParameterName.COMMAND);
+        try {
+            String path = getPath(action, request, response);
+            response.sendRedirect(path);
+        } catch (CommandException e) {
+            log.error(e);
+            response.sendRedirect(pathCreator.getError());
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ControllerUtilFactory utilFactory = ControllerUtilFactory.getINSTANCE();
+        ControllerUtilFactory utilFactory = ControllerUtilFactory.getInstance();
         PathCreator pathCreator = utilFactory.getPathCreator();
 
         String action = request.getParameter(ParameterName.COMMAND);
@@ -39,13 +49,10 @@ public class MainController extends HttpServlet {
     }
 
     private String getPath(String action, HttpServletRequest request, HttpServletResponse response) throws CommandException {
-        CommandFactory commandFactory = CommandFactory.getINSTANCE();
+        CommandFactory commandFactory = CommandFactory.getInstance();
 
         Command command = commandFactory.createCommand(action, request, response);
-       // String path = command.execute();
-
-        //return path;
-        return null;
+        return command.execute();
     }
 
 }

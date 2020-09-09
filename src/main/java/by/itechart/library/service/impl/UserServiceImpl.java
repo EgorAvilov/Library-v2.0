@@ -11,32 +11,29 @@ import by.itechart.library.dao.exception.DAOException;
 import by.itechart.library.service.api.UserService;
 import by.itechart.library.service.exception.ServiceException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
 
-    private DAOFactory daoFactory = DAOFactory.getINSTANCE();
-
+    private DAOFactory daoFactory = DAOFactory.getInstance();
     private BookDAO bookDAO = daoFactory.getBookDAO();
     private BorrowRecordDAO borrowRecordDAO = daoFactory.getBorrowRecordDAO();
     private UserDAO userDAO = daoFactory.getUserDAO();
 
-
     @Override
-    public Book viewBookById(int id) throws ServiceException {
-        Book book = new Book();
+    public Book getBookById(int id) throws ServiceException {
+        Book book;
         try {
             book = bookDAO.getBook(id);
         } catch (DAOException e) {
-            new ServiceException(e);
+            throw new ServiceException(e);
         }
         return book;
     }
 
     @Override
-    public List<Book> viewAllBooks() throws ServiceException {
-        List<Book> books = new ArrayList<>();
+    public List<Book> getAllBooks() throws ServiceException {
+        List<Book> books;
         try {
             books = bookDAO.getAllBooks();
         } catch (DAOException e) {
@@ -47,9 +44,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User signIn(String username, String password) throws ServiceException {
-        User user=new User();
+        User user;
         try {
-            user=userDAO.getUser(username, password);
+            user = userDAO.getUser(username, password);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -57,14 +54,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void signUp(User reader) throws ServiceException {
-
+    public void signUp(User user) throws ServiceException {
         try {
-            userDAO.addUser(reader);
+            userDAO.addUser(user);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
-
     }
 
     @Override
@@ -77,14 +72,42 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User viewProfile(int readerId) throws ServiceException {
-        User user = new User();
-
+    public void updateBorrowRecord(BorrowRecord borrowRecord) throws ServiceException {
         try {
-            user = userDAO.getUser(readerId);
+            borrowRecordDAO.updateBorrowRecord(borrowRecord);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public List<BorrowRecord> getAllBorrowRecords(int userId) throws ServiceException {
+        List<BorrowRecord> borrowRecords;
+        try {
+            borrowRecords = borrowRecordDAO.getAllByUserId(userId);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+        return borrowRecords;
+    }
+
+    @Override
+    public User getProfile(int userId) throws ServiceException {
+        User user;
+        try {
+            user = userDAO.getUser(userId);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
         return user;
+    }
+
+    @Override
+    public void updateProfile(User user) throws ServiceException {
+        try {
+            userDAO.updateUser(user);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
     }
 }

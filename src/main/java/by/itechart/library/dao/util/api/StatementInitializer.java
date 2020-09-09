@@ -20,7 +20,6 @@ public interface StatementInitializer {
 
     public void addUserId(PreparedStatement statement, int id) throws SQLException;
 
-
     public void updateBorrowRecord(PreparedStatement statement, BorrowRecord borrowRecord) throws SQLException;
 
     public void addUser(PreparedStatement statement, User user) throws SQLException;

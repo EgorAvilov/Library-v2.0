@@ -1,0 +1,44 @@
+package by.itechart.library.controller.util.impl;
+
+import by.itechart.library.bean.Book;
+import by.itechart.library.bean.BorrowRecord;
+import by.itechart.library.bean.User;
+import by.itechart.library.controller.util.ParameterName;
+import by.itechart.library.controller.util.api.AttributesInitializer;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.List;
+
+public class AttributesInitializerImpl implements AttributesInitializer {
+    @Override
+    public void setRequestAttributesBorrowRecords(HttpServletRequest request, List<BorrowRecord> borrowRecords) {
+        request.setAttribute(ParameterName.BORROW_RECORDS, borrowRecords);
+    }
+
+    @Override
+    public void setRequestAttributesBooks(HttpServletRequest request, List<Book> books) {
+        request.setAttribute(ParameterName.BOOKS, books);
+
+    }
+
+    @Override
+    public void setSessionAttributesUser(HttpSession session, User user) {
+        session.setAttribute(ParameterName.USER, user);
+    }
+
+    @Override
+    public void setRequestAttributesUsers(HttpServletRequest request, List<User> users) {
+        request.setAttribute(ParameterName.USERS, users);
+    }
+
+    @Override
+    public void setRequestAttributesUser(HttpServletRequest request, User user) {
+        request.setAttribute(ParameterName.USER, user);
+    }
+
+    @Override
+    public void setRequestAttributesBorrowRecord(HttpServletRequest request, List<BorrowRecord> borrowRecords) {
+        request.setAttribute(ParameterName.BORROW_RECORDS, borrowRecords);
+    }
+}

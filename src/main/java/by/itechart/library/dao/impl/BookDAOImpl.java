@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookDAOImpl implements BookDAO {
-    private DAOUtilFactory utilFactory = DAOUtilFactory.getINSTANCE();
+    private DAOUtilFactory utilFactory = DAOUtilFactory.getInstance();
     private ResultCreator resultCreator = utilFactory.getResultCreator();
     private ResourceCloser resourceCloser = utilFactory.getResourceCloser();
     private StatementInitializer statementInitializer = utilFactory.getStatementInitializer();

@@ -8,6 +8,7 @@ import java.sql.Date;
 @Data
 public class Book implements Serializable {
     private static final long serialVersionUID = 7197102530298867633L;
+
     private int id;
     private byte[] cover;
     private String title;

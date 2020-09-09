@@ -18,10 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BorrowRecordDAOImpl implements BorrowRecordDAO {
-    private DAOUtilFactory utilFactory = DAOUtilFactory.getINSTANCE();
+    private DAOUtilFactory utilFactory = DAOUtilFactory.getInstance();
     private ResultCreator resultCreator = utilFactory.getResultCreator();
     private ResourceCloser resourceCloser = utilFactory.getResourceCloser();
     private StatementInitializer statementInitializer = utilFactory.getStatementInitializer();
+
     @Override
     public List<BorrowRecord> getAll() throws DAOException {
         String request = SQLRequest.GET_ALL_BORROW_RECORDS;
@@ -64,7 +65,7 @@ public class BorrowRecordDAOImpl implements BorrowRecordDAO {
     }
 
     @Override
-    public List<BorrowRecord> getAllByReaderId(int readerId) throws DAOException {
+    public List<BorrowRecord> getAllByUserId(int readerId) throws DAOException {
         String request = SQLRequest.GET_BORROW_RECORDS_BY_READER_ID;
         List<BorrowRecord> borrowRecords = new ArrayList<>();
         Connection connection = null;
@@ -73,7 +74,7 @@ public class BorrowRecordDAOImpl implements BorrowRecordDAO {
         try {
             connection = DBCPDataSource.getConnection();
             statement = connection.prepareStatement(request);
-            statementInitializer.addReaderId(statement, readerId);
+            statementInitializer.addUserId(statement, readerId);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 BorrowRecord borrowRecord = resultCreator.getNextBorrowRecord(resultSet);
@@ -102,7 +103,6 @@ public class BorrowRecordDAOImpl implements BorrowRecordDAO {
             throw new DAOException(e);
         } finally {
             resourceCloser.close(statement);
-            resourceCloser.close(connection);
         }
     }
 }

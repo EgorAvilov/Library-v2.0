@@ -1,6 +1,7 @@
 package by.itechart.library.service.api;
 
 import by.itechart.library.bean.Book;
+import by.itechart.library.bean.BorrowRecord;
 import by.itechart.library.bean.User;
 import by.itechart.library.service.exception.ServiceException;
 
@@ -15,15 +16,15 @@ public interface AdminService {
 
     public int changeBookDeletedStatus(int bookId) throws ServiceException;
 
+    public List<BorrowRecord> getAllBorrowRecords() throws ServiceException;
 
+    public List<BorrowRecord> getAllBorrowRecordsByUserId(int userId) throws ServiceException;
 
-
-
-    public int changeDeletedStatus(int userId) throws ServiceException;
+    public int changeUserDeletedStatus(int userId) throws ServiceException;
 
     public void addUser(User user) throws ServiceException;
 
-    public List<User> getAllReaders() throws ServiceException;
+    public List<User> getAllUsers() throws ServiceException;
 
 
 }
