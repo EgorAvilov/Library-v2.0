@@ -1,54 +1,53 @@
 package by.itechart.library.controller.command.impl;
 
-import by.itechart.library.entity.User;
 import by.itechart.library.controller.command.Command;
 import by.itechart.library.controller.command.exception.CommandException;
 import by.itechart.library.controller.util.ControllerUtilFactory;
 import by.itechart.library.controller.util.ParameterName;
-import by.itechart.library.controller.util.api.AttributesInitializer;
 import by.itechart.library.controller.util.api.HttpRequestResponseKeeper;
 import by.itechart.library.controller.util.api.PathCreator;
+import by.itechart.library.entity.User;
 import by.itechart.library.service.ServiceFactory;
 import by.itechart.library.service.api.CommonService;
-import by.itechart.library.service.api.UserService;
 import by.itechart.library.service.exception.ServiceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-public class GetProfileCommand implements Command {
+public class UpdateProfileCommand implements Command {
     private ControllerUtilFactory utilFactory = ControllerUtilFactory.getInstance();
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private CommonService commonService = serviceFactory.getCommonService();
 
-
     @Override
     public String execute() throws CommandException {
+
         PathCreator pathCreator = utilFactory.getPathCreator();
-        AttributesInitializer attributesInitializer = utilFactory.getAttributesInitializer();
         HttpRequestResponseKeeper keeper = utilFactory.getHttpRequestResponseKeeper();
-
-
-        String path = pathCreator.getError();
 
         HttpServletRequest request = keeper.getRequest();
         HttpServletResponse response = keeper.getResponse();
+        String path = pathCreator.getError();
 
-        HttpSession session = request.getSession();
-        int userId = (Integer) session.getAttribute(ParameterName.USER_ID);
+        int id= Integer.parseInt(request.getParameter(ParameterName.USER_ID));
 
-        User user;
+        String firstName = request.getParameter(ParameterName.FIRST_NAME);
+        String lastName = request.getParameter(ParameterName.LAST_NAME);
+        String phoneNumber = request.getParameter(ParameterName.PHONE_NUMBER);
+        String password = request.getParameter(ParameterName.PASSWORD);
+
+        User user=new User();
+        user.setId(id);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setPhoneNumber(phoneNumber);
+        user.setPassword(password);
         try {
-            user = commonService.getProfile(userId);
-            attributesInitializer.setRequestAttributesUser(request, user);
-            // path = pathCreator.getUserPage();
-
+            commonService.updateProfile(user);
+            // path=pathCreator.ge
         } catch (ServiceException e) {
             throw new CommandException(e);
         }
         return path;
-
-
     }
 }

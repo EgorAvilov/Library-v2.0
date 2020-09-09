@@ -38,16 +38,6 @@ public class AdminServiceImpl implements AdminService {
         }
     }
 
-    @Override
-    public List<Book> getAllBooks() throws ServiceException {
-        List<Book> books;
-        try {
-            books = bookDAO.getAllBooks();
-        } catch (DAOException e) {
-            throw new ServiceException(e);
-        }
-        return books;
-    }
 
     @Override
     public int changeBookDeletedStatus(int bookId) throws ServiceException {

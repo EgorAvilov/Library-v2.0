@@ -30,7 +30,7 @@ public class CommandFactory {
         operations.put(CommandName.COMMAND_GET_ALL_BORROW_RECORDS_BY_USER_ID, new GetAllBorrowRecordsByUserIdCommand());///!!!!!
       //  operations.put(CommandName.COMMAND_ADD_USER, new AddUserCommand());
         operations.put(CommandName.COMMAND_GET_ALL_USERS, new GetAllUsersCommand());
-        operations.put(CommandName.COMMAND_UPDATE_USER, new UpdateUserCommand());
+        operations.put(CommandName.COMMAND_UPDATE_USER, new UpdateProfileCommand());
         operations.put(CommandName.COMMAND_CHANGE_USER_DELETED_STATUS, new ChangeUserDeletedStatusCommand());
         operations.put(CommandName.COMMAND_FORWARD_TO_MAIN, new ForwardToMainCommand());
 

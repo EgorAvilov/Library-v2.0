@@ -12,7 +12,6 @@ public interface AdminService {
 
     public void updateBook(Book book) throws ServiceException;
 
-    public List<Book> getAllBooks() throws ServiceException;
 
     public int changeBookDeletedStatus(int bookId) throws ServiceException;
 

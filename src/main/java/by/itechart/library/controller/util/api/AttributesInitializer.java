@@ -14,5 +14,5 @@ public interface AttributesInitializer {
     public void setSessionAttributesUser(HttpSession session, User user);
     public void setRequestAttributesUsers(HttpServletRequest request, List<User> users);
     public void setRequestAttributesUser(HttpServletRequest request, User user);
-    public void setRequestAttributesBorrowRecord(HttpServletRequest request, List<BorrowRecord> borrowRecords);
+
 }

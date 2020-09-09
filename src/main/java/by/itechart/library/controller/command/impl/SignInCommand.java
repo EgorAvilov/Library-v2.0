@@ -9,6 +9,7 @@ import by.itechart.library.controller.util.api.AttributesInitializer;
 import by.itechart.library.controller.util.api.HttpRequestResponseKeeper;
 import by.itechart.library.controller.util.api.PathCreator;
 import by.itechart.library.service.ServiceFactory;
+import by.itechart.library.service.api.CommonService;
 import by.itechart.library.service.api.UserService;
 import by.itechart.library.service.exception.ServiceException;
 
@@ -20,7 +21,7 @@ public class SignInCommand implements Command {
 
     private ControllerUtilFactory utilFactory = ControllerUtilFactory.getInstance();
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
-    private UserService userService = serviceFactory.getUserServiceImpl();
+    private CommonService commonService = serviceFactory.getCommonService();
 
     @Override
     public String execute() throws CommandException {
@@ -37,7 +38,7 @@ public class SignInCommand implements Command {
 
         HttpSession session = request.getSession();
         try {
-            User user = userService.signIn(username, password);
+            User user = commonService.signIn(username, password);
             attributesInitializer.setSessionAttributesUser(session, user);
             path = pathCreator.getForwardMainPage(request.getContextPath());
         } catch (ServiceException e) {
