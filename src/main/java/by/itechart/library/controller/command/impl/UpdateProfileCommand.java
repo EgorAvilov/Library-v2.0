@@ -29,14 +29,14 @@ public class UpdateProfileCommand implements Command {
         HttpServletResponse response = keeper.getResponse();
         String path = pathCreator.getError();
 
-        int id= Integer.parseInt(request.getParameter(ParameterName.USER_ID));
+        int id = Integer.parseInt(request.getParameter(ParameterName.USER_ID));
 
         String firstName = request.getParameter(ParameterName.FIRST_NAME);
         String lastName = request.getParameter(ParameterName.LAST_NAME);
         String phoneNumber = request.getParameter(ParameterName.PHONE_NUMBER);
         String password = request.getParameter(ParameterName.PASSWORD);
 
-        User user=new User();
+        User user = new User();
         user.setId(id);
         user.setFirstName(firstName);
         user.setLastName(lastName);
@@ -44,7 +44,7 @@ public class UpdateProfileCommand implements Command {
         user.setPassword(password);
         try {
             commonService.updateProfile(user);
-            // path=pathCreator.ge
+            path = pathCreator.getUserPage();
         } catch (ServiceException e) {
             throw new CommandException(e);
         }

@@ -42,16 +42,7 @@ public class UserServiceImpl implements UserService {
         return books;
     }
 
-    @Override
-    public User signIn(String username, String password) throws ServiceException {
-        User user;
-        try {
-            user = userDAO.getUser(username, password);
-        } catch (DAOException e) {
-            throw new ServiceException(e);
-        }
-        return user;
-    }
+
 
     @Override
     public void signUp(User user) throws ServiceException {
@@ -91,23 +82,4 @@ public class UserServiceImpl implements UserService {
         return borrowRecords;
     }
 
-    @Override
-    public User getProfile(int userId) throws ServiceException {
-        User user;
-        try {
-            user = userDAO.getUser(userId);
-        } catch (DAOException e) {
-            throw new ServiceException(e);
-        }
-        return user;
-    }
-
-    @Override
-    public void updateProfile(User user) throws ServiceException {
-        try {
-            userDAO.updateUser(user);
-        } catch (DAOException e) {
-            throw new ServiceException(e);
-        }
-    }
 }

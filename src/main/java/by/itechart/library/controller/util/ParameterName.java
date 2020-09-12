@@ -16,7 +16,7 @@ public class ParameterName {
     public final static String EMAIL = "email";
     public final static String PHONE_NUMBER = "password";
 
-    public final static String STATUS = "status";
+    public final static String ROLE = "role";
 
     public final static String BOOK_ID = "bookId";
     public final static String COVER = "cover";
@@ -30,7 +30,7 @@ public class ParameterName {
     public final static String DESCRIPTION = "description";
     public final static String TOTAL_AMOUNT = "totalAmount";
 
-    public final static String AVAILVABLE_AMOUNT = "availableAmount";
+    public final static String AVAILABLE_AMOUNT = "availableAmount";
 
     public final static String DUE_DATE = "dueDate";
 

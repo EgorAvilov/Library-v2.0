@@ -31,7 +31,7 @@ public class BookDAOImpl implements BookDAO {
     public List<Book> getAllBooks() throws DAOException {
         String request = SQLRequest.GET_ALL_BOOKS;
         List<Book> books = new ArrayList<>();
-        Connection connection = null;
+        Connection connection;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
@@ -55,7 +55,7 @@ public class BookDAOImpl implements BookDAO {
     @Override
     public void addBook(Book book) throws DAOException {
         String request = SQLRequest.CREATE_BOOK;
-        Connection connection = null;
+        Connection connection;
         PreparedStatement statement = null;
         try {
             connection = DBCPDataSource.getConnection();
@@ -97,7 +97,7 @@ public class BookDAOImpl implements BookDAO {
     @Override
     public void updateBook(Book book) throws DAOException {
         String request = SQLRequest.UPDATE_BOOK;
-        Connection connection = null;
+        Connection connection;
         PreparedStatement statement = null;
         try {
             connection = DBCPDataSource.getConnection();
@@ -108,10 +108,7 @@ public class BookDAOImpl implements BookDAO {
             throw new DAOException(e);
         } finally {
             resourceCloser.close(statement);
-
         }
-
-
     }
 
     @Override
@@ -119,7 +116,7 @@ public class BookDAOImpl implements BookDAO {
         String request = SQLRequest.CHANGE_BOOK_DELETED_STATUS;
         Connection connection;
         PreparedStatement statement = null;
-        int result = 0;
+        int result;
         try {
             connection = DBCPDataSource.getConnection();
             statement = connection.prepareStatement(request);

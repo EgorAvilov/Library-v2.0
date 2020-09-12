@@ -13,6 +13,7 @@ import by.itechart.library.service.exception.ServiceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.sql.Date;
 import java.time.LocalDate;
 
@@ -29,20 +30,21 @@ public class AddBorrowRecordCommand implements Command {
         HttpServletResponse response = keeper.getResponse();
 
         String path = pathCreator.getError();
-
-        int userId= Integer.parseInt(request.getParameter(ParameterName.USER_ID));
+        HttpSession session = request.getSession();
+        int userId= (int) session.getAttribute(ParameterName.USER_ID);
+       // int userId= Integer.parseInt(request.getParameter(ParameterName.USER_ID));
         Date borrowDate= Date.valueOf(LocalDate.now ());
         Date dueDate= Date.valueOf(request.getParameter(ParameterName.DUE_DATE));
         int bookId= Integer.parseInt(request.getParameter(ParameterName.BOOK_ID));
 
         BorrowRecord borrowRecord=new BorrowRecord();
         borrowRecord.setBookId(bookId);
-        borrowRecord.setReaderId(userId);
+        borrowRecord.setUserId(userId);
         borrowRecord.setDueDate(dueDate);
         borrowRecord.setBorrowDate(borrowDate);
         try {
             userService.addBorrowRecord(borrowRecord);
-            // path=pathCreator.ge
+             path=pathCreator.getBooksPage();
         } catch (ServiceException e) {
             throw new CommandException(e);
         }

@@ -1,18 +1,20 @@
 package by.itechart.library.controller.command.impl;
 
-import by.itechart.library.entity.Book;
 import by.itechart.library.controller.command.Command;
 import by.itechart.library.controller.command.exception.CommandException;
 import by.itechart.library.controller.util.ControllerUtilFactory;
 import by.itechart.library.controller.util.ParameterName;
+import by.itechart.library.controller.util.api.ControllerValueChecker;
 import by.itechart.library.controller.util.api.HttpRequestResponseKeeper;
 import by.itechart.library.controller.util.api.PathCreator;
+import by.itechart.library.entity.Book;
 import by.itechart.library.service.ServiceFactory;
 import by.itechart.library.service.api.AdminService;
 import by.itechart.library.service.exception.ServiceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.sql.Date;
 
 public class AddBookCommand implements Command {
@@ -23,16 +25,19 @@ public class AddBookCommand implements Command {
 
     @Override
     public String execute() throws CommandException {
-
+        ControllerValueChecker valueChecker = utilFactory.getControllerValueChecker();
         PathCreator pathCreator = utilFactory.getPathCreator();
         HttpRequestResponseKeeper keeper = utilFactory.getHttpRequestResponseKeeper();
 
         HttpServletRequest request = keeper.getRequest();
         HttpServletResponse response = keeper.getResponse();
 
+        HttpSession session = request.getSession();
+
         String path = pathCreator.getError();
 
-        byte[] cover = request.getParameter(ParameterName.COVER).getBytes();
+        byte[] cover = request.getParameter(ParameterName.COVER)
+                              .getBytes();
         String title = request.getParameter(ParameterName.TITLE);
         String authors = request.getParameter(ParameterName.AUTHORS);
         String publisher = request.getParameter(ParameterName.PUBLISHER);
@@ -54,9 +59,15 @@ public class AddBookCommand implements Command {
         book.setISBN(ISBN);
         book.setDescription(description);
         book.setTotalAmount(totalAmount);
+
+        int role = (int) session.getAttribute(ParameterName.ROLE);
         try {
-            adminService.addBook(book);
-            // path=pathCreator.ge
+            if (valueChecker.isAdmin(role)) {
+                adminService.addBook(book);
+                path = pathCreator.getBooksPage();
+            } else {
+                path = pathCreator.getError();
+            }
         } catch (ServiceException e) {
             throw new CommandException(e);
         }

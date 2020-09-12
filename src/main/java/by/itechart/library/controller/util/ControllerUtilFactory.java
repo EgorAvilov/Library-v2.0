@@ -1,19 +1,14 @@
 package by.itechart.library.controller.util;
 
-import by.itechart.library.controller.util.api.AttributesInitializer;
-import by.itechart.library.controller.util.api.HttpRequestResponseKeeper;
-import by.itechart.library.controller.util.api.PaginationCurrentPage;
-import by.itechart.library.controller.util.api.PathCreator;
-import by.itechart.library.controller.util.impl.AttributesInitializerImpl;
-import by.itechart.library.controller.util.impl.HttpRequestResponseKeeperImpl;
-import by.itechart.library.controller.util.impl.PaginationCurrentPageImpl;
-import by.itechart.library.controller.util.impl.PathCreatorImpl;
+import by.itechart.library.controller.util.api.*;
+import by.itechart.library.controller.util.impl.*;
 import lombok.Getter;
 
 public class ControllerUtilFactory {
     @Getter
-    private final static ControllerUtilFactory Instance = new ControllerUtilFactory();
-
+    private final static ControllerUtilFactory instance = new ControllerUtilFactory();
+    @Getter
+    private ControllerValueChecker controllerValueChecker = new ControllerValueCheckerImpl();
     @Getter
     private PathCreator pathCreator = new PathCreatorImpl();
     @Getter

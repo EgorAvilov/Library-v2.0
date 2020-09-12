@@ -1004,7 +1004,7 @@ APPLICATION_PASSWORD_ADMIN,AUDIT_ADMIN,BACKUP_ADMIN,BINLOG_ADMIN,BINLOG_ENCRYPTI
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="308" parent="286" name="reader_id">
+    <column id="308" parent="286" name="user_id">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
@@ -1037,7 +1037,7 @@ APPLICATION_PASSWORD_ADMIN,AUDIT_ADMIN,BACKUP_ADMIN,BINLOG_ADMIN,BINLOG_ENCRYPTI
       <DataType>varchar(255)|0s</DataType>
     </column>
     <index id="315" parent="286" name="borrow_records_readers_id_fk">
-      <ColNames>reader_id</ColNames>
+      <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
     <index id="316" parent="286" name="borrow_records_book_info_id_fk">
@@ -1054,11 +1054,9 @@ APPLICATION_PASSWORD_ADMIN,AUDIT_ADMIN,BACKUP_ADMIN,BINLOG_ADMIN,BINLOG_ENCRYPTI
       <Primary>1</Primary>
     </key>
     <foreign-key id="319" parent="286" name="borrow_records_readers_id_fk">
-      <ColNames>reader_id</ColNames>
+      <ColNames>user_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
-      <OnUpdate>cascade</OnUpdate>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="320" parent="286" name="borrow_records_book_info_id_fk">
       <ColNames>book_id</ColNames>

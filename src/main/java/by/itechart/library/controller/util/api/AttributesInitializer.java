@@ -9,10 +9,19 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public interface AttributesInitializer {
-    public void setRequestAttributesBorrowRecords(HttpServletRequest request, List<BorrowRecord> borrowRecords);
-    public void setRequestAttributesBooks(HttpServletRequest request, List<Book> books);
     public void setSessionAttributesUser(HttpSession session, User user);
+
+    public void setRequestAttributesBorrowRecords(HttpServletRequest request, List<BorrowRecord> borrowRecords);
+
+    public void setRequestAttributesBooks(HttpServletRequest request, List<Book> books);
+
     public void setRequestAttributesUsers(HttpServletRequest request, List<User> users);
+
     public void setRequestAttributesUser(HttpServletRequest request, User user);
+
+
+
+
+
 
 }

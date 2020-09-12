@@ -16,7 +16,7 @@ public final class SQLRequest {
     /**
      * запросы для таблицы Borrow Record
      */
-    public static final String GET_BORROW_RECORDS_BY_READER_ID = "SELECT * FROM borrow_records WHERE reader_id = ?"; //написать сам запрос
+    public static final String GET_BORROW_RECORDS_BY_USER_ID = "SELECT * FROM borrow_records WHERE reader_id = ?"; //написать сам запрос
     public static final String GET_ALL_BORROW_RECORDS = "SELECT * FROM borrow_records";
     public static final String CREATE_BORROW_RECORD = "INSERT INTO borrow_record (reader_id, borrow_date, due_date,  book_id ) values(?,?,?,?)";//дописать
     public static final String UPDATE_BORROW_RECORD = "UPDATE borrow_records SET return_date=?, status_id=?, comment=? WHERE id=?";//ДОПИСАТЬ

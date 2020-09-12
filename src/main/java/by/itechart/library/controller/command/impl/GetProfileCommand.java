@@ -1,5 +1,6 @@
 package by.itechart.library.controller.command.impl;
 
+import by.itechart.library.controller.util.api.ControllerValueChecker;
 import by.itechart.library.entity.User;
 import by.itechart.library.controller.command.Command;
 import by.itechart.library.controller.command.exception.CommandException;
@@ -25,6 +26,7 @@ public class GetProfileCommand implements Command {
 
     @Override
     public String execute() throws CommandException {
+        ControllerValueChecker valueChecker = utilFactory.getControllerValueChecker();
         PathCreator pathCreator = utilFactory.getPathCreator();
         AttributesInitializer attributesInitializer = utilFactory.getAttributesInitializer();
         HttpRequestResponseKeeper keeper = utilFactory.getHttpRequestResponseKeeper();
@@ -37,12 +39,16 @@ public class GetProfileCommand implements Command {
 
         HttpSession session = request.getSession();
         int userId = (Integer) session.getAttribute(ParameterName.USER_ID);
-
+        int role = (Integer) session.getAttribute(ParameterName.ROLE);
         User user;
         try {
-            user = commonService.getProfile(userId);
-            attributesInitializer.setRequestAttributesUser(request, user);
-            // path = pathCreator.getUserPage();
+            if(valueChecker.isAnyUser(role)) {
+                user = commonService.getProfile(userId);
+                attributesInitializer.setRequestAttributesUser(request, user);
+                path = pathCreator.getUserPage();
+            }else{
+                path=pathCreator.getError();
+            }
 
         } catch (ServiceException e) {
             throw new CommandException(e);

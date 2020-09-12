@@ -11,7 +11,7 @@ import lombok.Getter;
 
 public class ServiceFactory {
     @Getter
-    private static final ServiceFactory Instance = new ServiceFactory();
+    private static final ServiceFactory instance = new ServiceFactory();
     @Getter
     private UserService userServiceImpl = new UserServiceImpl();
     @Getter

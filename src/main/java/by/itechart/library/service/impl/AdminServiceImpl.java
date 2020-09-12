@@ -83,14 +83,7 @@ public class AdminServiceImpl implements AdminService {
         return result;
     }
 
-    @Override
-    public void addUser(User user) throws ServiceException {
-        try {
-            userDAO.addUser(user);
-        } catch (DAOException e) {
-            throw new ServiceException(e);
-        }
-    }
+
 
     @Override
     public List<User> getAllUsers() throws ServiceException {

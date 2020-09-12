@@ -1,12 +1,12 @@
 package by.itechart.library.controller.command.impl;
 
-import by.itechart.library.entity.Book;
 import by.itechart.library.controller.command.Command;
 import by.itechart.library.controller.command.exception.CommandException;
 import by.itechart.library.controller.util.ControllerUtilFactory;
 import by.itechart.library.controller.util.ParameterName;
 import by.itechart.library.controller.util.api.HttpRequestResponseKeeper;
 import by.itechart.library.controller.util.api.PathCreator;
+import by.itechart.library.entity.Book;
 import by.itechart.library.service.ServiceFactory;
 import by.itechart.library.service.api.AdminService;
 import by.itechart.library.service.exception.ServiceException;
@@ -31,7 +31,8 @@ public class UpdateBookCommand implements Command {
 
         String path = pathCreator.getError();
         int id = Integer.parseInt(request.getParameter(ParameterName.BOOK_ID));
-        byte[] cover = request.getParameter(ParameterName.COVER).getBytes();
+        byte[] cover = request.getParameter(ParameterName.COVER)
+                              .getBytes();
         String title = request.getParameter(ParameterName.TITLE);
         String authors = request.getParameter(ParameterName.AUTHORS);
         String publisher = request.getParameter(ParameterName.PUBLISHER);
@@ -55,8 +56,8 @@ public class UpdateBookCommand implements Command {
         book.setDescription(description);
         book.setTotalAmount(totalAmount);
         try {
-            adminService.addBook(book);
-            // path=pathCreator.ge
+            adminService.updateBook(book);
+            path = pathCreator.getBookPage(request.getContextPath(), id);
         } catch (ServiceException e) {
             throw new CommandException(e);
         }

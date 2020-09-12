@@ -51,6 +51,8 @@ public class SignUpCommand implements Command {
 
         try {
             userService.signUp(user);
+            path=pathCreator.getSignIn();
+            attributeInitializer.setSessionAttributesUser(session,user);
         } catch (ServiceException e) {
             throw new CommandException(e);
         }

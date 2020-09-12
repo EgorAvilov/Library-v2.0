@@ -37,8 +37,5 @@ public class AttributesInitializerImpl implements AttributesInitializer {
         request.setAttribute(ParameterName.USER, user);
     }
 
-    @Override
-    public void setRequestAttributesBorrowRecord(HttpServletRequest request, List<BorrowRecord> borrowRecords) {
-        request.setAttribute(ParameterName.BORROW_RECORDS, borrowRecords);
-    }
+
 }

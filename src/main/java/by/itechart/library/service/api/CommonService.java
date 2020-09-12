@@ -15,4 +15,5 @@ public interface CommonService {
     public User signIn(String username, String password) throws ServiceException;
 
     public void updateProfile(User user) throws ServiceException;
+
 }

@@ -18,6 +18,6 @@ public class User implements Serializable {
     private String phoneNumber;//
     private String username;//
     private String password;//
-    private Role role;
+    private int roleId;
     private boolean deletedStatus;
 }

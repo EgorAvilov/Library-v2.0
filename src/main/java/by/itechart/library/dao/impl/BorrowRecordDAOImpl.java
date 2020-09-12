@@ -66,7 +66,7 @@ public class BorrowRecordDAOImpl implements BorrowRecordDAO {
 
     @Override
     public List<BorrowRecord> getAllByUserId(int readerId) throws DAOException {
-        String request = SQLRequest.GET_BORROW_RECORDS_BY_READER_ID;
+        String request = SQLRequest.GET_BORROW_RECORDS_BY_USER_ID;
         List<BorrowRecord> borrowRecords = new ArrayList<>();
         Connection connection = null;
         PreparedStatement statement = null;
