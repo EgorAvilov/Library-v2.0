@@ -1,9 +1,9 @@
 package by.itechart.library.dao.util.impl;
 
+import by.itechart.library.dao.util.api.StatementInitializer;
 import by.itechart.library.entity.Book;
 import by.itechart.library.entity.BorrowRecord;
 import by.itechart.library.entity.User;
-import by.itechart.library.dao.util.api.StatementInitializer;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -65,10 +65,10 @@ public class StatementInitializerImpl implements StatementInitializer {
 
     @Override
     public void addBorrowRecord(PreparedStatement statement, BorrowRecord borrowRecord) throws SQLException {
-        statement.setInt(1, borrowRecord.getReaderId());
+        statement.setInt(1, borrowRecord.getUserId());
         statement.setDate(2, borrowRecord.getBorrowDate());
         statement.setDate(3, borrowRecord.getDueDate());
-        statement.setInt(4, borrowRecord.getReaderId());
+        statement.setInt(4, borrowRecord.getBookId());
     }
 
     @Override
@@ -79,37 +79,37 @@ public class StatementInitializerImpl implements StatementInitializer {
     @Override
     public void updateBorrowRecord(PreparedStatement statement, BorrowRecord borrowRecord) throws SQLException {
         statement.setDate(1, borrowRecord.getReturnDate());
-        statement.setNString(2, borrowRecord.getBorrowRecordStatus().toString());
+        statement.setInt(2, borrowRecord.getStatusId());
         statement.setNString(3, borrowRecord.getComment());
         statement.setInt(4, borrowRecord.getId());
     }
 
     @Override
-    public void addUser(PreparedStatement statement, User reader) throws SQLException {
-        statement.setNString(1, reader.getFirstName());
-        statement.setNString(2, reader.getEmail());
-        statement.setDate(3, reader.getDateOfRegistration());
-        statement.setNString(4, reader.getPhoneNumber());
-        statement.setInt(5, reader.getGenderId());
-        statement.setNString(6, reader.getUsername());
-        statement.setNString(7, reader.getPassword());
+    public void addUser(PreparedStatement statement, User user) throws SQLException {
+        statement.setNString(1, user.getFirstName());
+        statement.setNString(2, user.getEmail());
+        statement.setDate(3, user.getDateOfRegistration());
+        statement.setNString(4, user.getPhoneNumber());
+        statement.setNString(5, user.getGender());
+        statement.setNString(6, user.getUsername());
+        statement.setNString(7, user.getPassword());
 
     }
 
     @Override
-    public void updateUser(PreparedStatement statement, User reader) throws SQLException {
-        statement.setNString(1, reader.getFirstName());
-        statement.setNString(2, reader.getEmail());
-        statement.setNString(3, reader.getPhoneNumber());
-        statement.setNString(4, reader.getLastName());
-        statement.setInt(5, reader.getGenderId());
-        statement.setNString(6, reader.getPassword());
-        statement.setInt(7, reader.getId());
+    public void updateUser(PreparedStatement statement, User user) throws SQLException {
+        statement.setNString(1, user.getFirstName());
+        statement.setNString(2, user.getEmail());
+        statement.setNString(3, user.getPhoneNumber());
+        statement.setNString(4, user.getLastName());
+        statement.setNString(5, user.getGender());
+        statement.setNString(6, user.getPassword());
+        statement.setInt(7, user.getId());
     }
 
     @Override
     public void addCredentials(PreparedStatement statement, String username, String password) throws SQLException {
-        statement.setNString(1,username);
-        statement.setNString(2,password);
+        statement.setNString(1, username);
+        statement.setNString(2, password);
     }
 }

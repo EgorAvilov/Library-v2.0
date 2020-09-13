@@ -37,14 +37,17 @@ public class SignUpCommand implements Command {
         String firstName = request.getParameter(ParameterName.FIRST_NAME);
         String lastName = request.getParameter(ParameterName.LAST_NAME);
         String email = request.getParameter(ParameterName.EMAIL);
+        String gender = request.getParameter(ParameterName.GENDER);
         String phoneNumber = request.getParameter(ParameterName.PHONE_NUMBER);
+
         User user = new User();
-        //здесь все сеттерами сделать и не забыть про gender
+
         user.setUsername(username);
         user.setPassword(password);
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);
+        user.setGender(gender);
         user.setPhoneNumber(phoneNumber);
 
         HttpSession session = request.getSession();

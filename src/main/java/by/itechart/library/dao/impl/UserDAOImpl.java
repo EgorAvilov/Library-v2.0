@@ -26,7 +26,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void addUser(User user) throws DAOException {
         String request = SQLRequest.CREATE_USER;
-        Connection connection = null;
+        Connection connection;
         PreparedStatement statement = null;
         try {
             connection = DBCPDataSource.getConnection();

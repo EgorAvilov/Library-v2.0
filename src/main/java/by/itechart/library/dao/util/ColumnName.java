@@ -12,7 +12,7 @@ public class ColumnName {
     public static final String USER_DATE_OF_REGISTRATION = "date_of_registration";
     public static final String USER_PHONE_NUMBER = "phone_number";
     public static final String USER_LAST_NAME = "last_name";
-    public static final String USER_GENDER_ID= "gender_id";
+    public static final String USER_GENDER= "gender";
     public static final String USER_DELETED_STATUS = "deleted_status";
     public static final String USER_USERNAME = "username";
     public static final String USER_PASSWORD = "password";
@@ -46,11 +46,6 @@ public class ColumnName {
     public static final String BORROW_RECORD_BOOK_ID = "book_id";
     public static final String BORROW_RECORD_STATUS_ID= "status_id";
     public static final String BORROW_RECORD_COMMENT = "comment";
-    /**
-     * column titles for table 'genders'
-     */
-    public static final String GENDERS_ID = "id";
-    public static final String GENDERS_GENDER = "gender";
     /**
      * column titles for table 'roles'
      */

@@ -8,8 +8,8 @@ import java.io.Serializable;
 import java.sql.Date;
 
 @Data
-@Builder(toBuilder = true)
 @NoArgsConstructor
+
 public class Book implements Serializable {
     private static final long serialVersionUID = 7197102530298867633L;
 

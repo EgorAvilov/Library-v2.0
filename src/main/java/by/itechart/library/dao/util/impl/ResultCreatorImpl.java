@@ -80,7 +80,7 @@ public class ResultCreatorImpl implements ResultCreator {
         int id = resultSet.getInt(ColumnName.USER_ID);
         String firstName = resultSet.getNString(ColumnName.USER_FIRST_NAME);
         String lastName = resultSet.getNString(ColumnName.USER_LAST_NAME);
-        int genderId = resultSet.getInt(ColumnName.USER_GENDER_ID);
+        String gender = resultSet.getNString(ColumnName.USER_GENDER);
         String email = resultSet.getNString(ColumnName.USER_EMAIL);
         Date dateOfRegistration = resultSet.getDate(ColumnName.USER_DATE_OF_REGISTRATION);
         String phoneNumber = resultSet.getNString(ColumnName.USER_PHONE_NUMBER);
@@ -89,12 +89,13 @@ public class ResultCreatorImpl implements ResultCreator {
         int roleId = resultSet.getInt(ColumnName.USER_ROLE_ID);
         boolean deletedStatus = resultSet.getBoolean(ColumnName.USER_DELETED_STATUS);
 
+
         User user = new User();
 
         user.setId(id);
         user.setFirstName(firstName);
         user.setLastName(lastName);
-        user.setGenderId(genderId);
+        user.setGender(gender);
         user.setEmail(email);
         user.setDateOfRegistration(dateOfRegistration);
         user.setPhoneNumber(phoneNumber);

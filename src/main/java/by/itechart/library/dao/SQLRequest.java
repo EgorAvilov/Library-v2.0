@@ -10,6 +10,7 @@ public final class SQLRequest {
      */
     public static final String GET_BOOK_BY_ID = "SELECT * FROM books WHERE id = ?"; //написать сам запрос
     public static final String GET_ALL_BOOKS = "SELECT * FROM books";
+    public static final String GET_ALL_BOOKS_ORDER_BY = "SELECT * FROM books ORDER BY ?";
     public static final String CREATE_BOOK = "INSERT INTO books (cover, title, authors, publisher, publish_date, genres, page_count, isbn, description, total_amount, available_amount ) values(?,?,?,?,?,?,?,?,?,?,?)";//дописать
     public static final String UPDATE_BOOK = "UPDATE books SET cover=?, title=?, authors=?, publisher=?, publish_date=?,genres=?, page_count=?, isbn=?, description=?, total_amount=? available_amount=? WHERE id=?";//ДОПИСАТЬ
     public static final String CHANGE_BOOK_DELETED_STATUS = "UPDATE books SET deleted_status=? WHERE id=?";
@@ -25,7 +26,7 @@ public final class SQLRequest {
      * запросы для таблицы Users
      */
     public static final String GET_USER_BY_ID = "SELECT * FROM users WHERE id=?";
-    public static final String CREATE_USER = "INSERT INTO users (first_name, email, date_of_registration, phone_number, last_name,gender_id, username, password ) values(?,?,?,?,?,?,?,?)";//дописать
+    public static final String CREATE_USER = "INSERT INTO users (first_name, email, date_of_registration, phone_number, last_name,gender, username, password ) values(?,?,?,?,?,?,?,?)";//дописать
     public static final String UPDATE_USER = "UPDATE users SET first_name=?, email=?, phone_number=?, last_name=?, gender_id=?, password=? WHERE id=?";//ДОПИСАТЬ
     public static final String GET_ALL_USERS = "SELECT * FROM users";
     public static final String CHANGE_USER_DELETED_STATUS = "UPDATE users SET deleted_status=? WHERE id=?";

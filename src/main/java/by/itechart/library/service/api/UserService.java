@@ -12,7 +12,6 @@ public interface UserService {
 
     public List<Book> getAllBooks() throws ServiceException;
 
-
     public void signUp(User user) throws ServiceException;
 
     public void addBorrowRecord(BorrowRecord borrowRecord) throws ServiceException;

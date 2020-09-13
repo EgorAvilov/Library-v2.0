@@ -14,6 +14,7 @@ public class ParameterName {
     public final static String USERNAME = "username";
     public final static String PASSWORD = "password";
     public final static String EMAIL = "email";
+    public final static String GENDER = "gender";
     public final static String PHONE_NUMBER = "password";
 
     public final static String ROLE = "role";
